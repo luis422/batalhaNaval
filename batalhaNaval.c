@@ -242,7 +242,7 @@ int main(){
     //cadastrando jogador 2
     printf("Digite seu nome: ");
     scanf("%s", &jogadores[1].nome);
-    printf("Bem vindo %s! vamos escolher onde vocï¿½ vai colocar seus navios de batalha!\n", jogadores[1].nome);
+    printf("Bem vindo %s! vamos escolher onde você vai colocar seus navios de batalha!\n", jogadores[1].nome);
     printf("\n0 = Água\n1 = Navio\n");
     
 	/*
