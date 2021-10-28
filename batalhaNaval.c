@@ -224,18 +224,6 @@ int main(){
     printf("Bem vindo %s! vamos escolher onde você vai colocar seus navios de batalha!\n", jogadores[0].nome);
     printf("\n0 = Água\n1 = Navio\n");
     
-    /*
-    for(w=0; w<10; w++){
-		for(z=0; z<10; z++){
-			if(w==0){
-				jogador1.tabuleiro[w][z] = 1;
-			}else{
-				jogador1.tabuleiro[w][z] = 0;
-			}
-		}
-	}
-	*/
-	
 	mostrarTabuleiro(0);
     cadastrarTabuleiro(0);
     
@@ -245,17 +233,6 @@ int main(){
     printf("Bem vindo %s! vamos escolher onde você vai colocar seus navios de batalha!\n", jogadores[1].nome);
     printf("\n0 = Água\n1 = Navio\n");
     
-	/*
-	for(w=0; w<10; w++){
-		for(z=0; z<10; z++){
-			if(w==0){
-				jogador2.tabuleiro[w][z] = 1;
-			}else{
-				jogador2.tabuleiro[w][z] = 0;
-			}
-		}
-	}*/
-	
 	mostrarTabuleiro(1);
     cadastrarTabuleiro(1);
     
