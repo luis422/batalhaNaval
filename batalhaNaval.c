@@ -1,28 +1,28 @@
 
-/*FaÁa um programa em C, que seja divido em funÁıes, com passagem de
-par‚metros para realizar o jogo de batalha naval vers„o alfa. Na batalha
-naval vers„o alfa, h· dois jogadores e dois tabuleiros com dimens„o 10x10
-e conta com as seguintes fases realizadas na sequÔøΩncia.
+/*Fa√ßa um programa em C, que seja divido em fun√ß√µes, com passagem de
+par√¢metros para realizar o jogo de batalha naval vers√£o alfa. Na batalha
+naval vers√£o alfa, h√° dois jogadores e dois tabuleiros com dimens√£o 10x10
+e conta com as seguintes fases realizadas na sequ√Ø¬ø¬Ωncia.
 
-a. Fase de inicializaÁ„o: Inicialmente cada tabuleiro deve ser zerado (
-colocando todas as posiÁıes em zero),
+a. Fase de inicializa√ß√£o: Inicialmente cada tabuleiro deve ser zerado (
+colocando todas as posi√ß√µes em zero),
 
-b. Fase de distribuiÁ„o dos navios: Cada jogador determina onde seus
-dez navios est„o, mencionando a coluna e linha a ser preenchida
+b. Fase de distribui√ß√£o dos navios: Cada jogador determina onde seus
+dez navios est√£o, mencionando a coluna e linha a ser preenchida
 (sugiro valor 1) no seu respectivo tabuleiro. O jogador 1 pode ter
-navio na mesma posiÁ„o do jogador 2, j· que est„o em tabuleiros
-diferentes.O preenchimento do tabuleiro n„o precisa ser alternando,
+navio na mesma posi√ß√£o do jogador 2, j√° que est√£o em tabuleiros
+diferentes.O preenchimento do tabuleiro n√£o precisa ser alternando,
 ou seja pode ser lido todo o tabuleiro do jogador 1 e depois o
 tabuleiro do jogador 2.
 
-c. Fase de ataque: cada jogador alternadamente indica uma cÈlula de
+c. Fase de ataque: cada jogador alternadamente indica uma c√©lula de
 ataque no tabuleiro oponente ( mencionando a linha e a coluna de
-ataque), o programa ent„o deve avaliar se o jogador conseguiu
-acertar um navio no tabuleiro do oponente e contabilizar a pontuaÁ„o.
+ataque), o programa ent√£o deve avaliar se o jogador conseguiu
+acertar um navio no tabuleiro do oponente e contabilizar a pontua√ß√£o.
 Cada acerto vale 1 ponto. Ganha o jogo quem acertar todos os navios
 do jogador oponente primeiro (ou seja, quem fizer 10 pontos
 primeiro). Caso os dois jogadores alcancem os dez pontos na mesma
-jogada, ent„o haver· empate.*/
+jogada, ent√£o haver√° empate.*/
 
 
 #include <stdlib.h>
@@ -31,7 +31,7 @@ jogada, ent„o haver· empate.*/
 
 #include <ctype.h>//toupper(var)
 
-struct jogador{
+typedef struct jogador{
 	
     char nome[30];
     int pontos = 0;
@@ -47,7 +47,7 @@ struct jogador{
          {0,0,0,0,0,0,0,0,0,0},
          {0,0,0,0,0,0,0,0,0,0}};
          
-}typedef jogador;
+};
 
 
 jogador jogadores[2];
@@ -69,8 +69,8 @@ void faseAtaque(){
 			if(j%2==0){
 				//vez do jogador 1
 				fflush(stdin);
-				printf("Jogador %s È a sua vez!\n", jogadores[0].nome);
-				printf("\nDigite a posiÁ„o do navio %d: ", c+1);
+				printf("Jogador %s √© a sua vez!\n", jogadores[0].nome);
+				printf("\nDigite a posi√ß√£o do navio %d: ", c+1);
 				scanf("%d %c", &linha, &coluna);
 				fflush(stdin);
 				
@@ -86,7 +86,7 @@ void faseAtaque(){
 							
 						}else{
 							
-							printf("%s n„o marcou ponto\n", jogadores[0].nome);
+							printf("%s n√£o marcou ponto\n", jogadores[0].nome);
 							
 						}
 					}
@@ -97,8 +97,8 @@ void faseAtaque(){
 			}else{
 				//vez do jogador 2
 				fflush(stdin);
-				printf("Jogador %s È a sua vez!\n", jogadores[1].nome);
-				printf("\nDigite a posiÁ„o do navio %d: ", c+1);
+				printf("Jogador %s √© a sua vez!\n", jogadores[1].nome);
+				printf("\nDigite a posi√ß√£o do navio %d: ", c+1);
 				scanf("%d %c", &linha, &coluna);
 				fflush(stdin);
 				
@@ -114,7 +114,7 @@ void faseAtaque(){
 							
 						}else{
 							
-							printf("%s n„o marcou ponto\n", jogadores[1].nome);
+							printf("%s n√£o marcou ponto\n", jogadores[1].nome);
 							
 						}
 					}
@@ -124,17 +124,16 @@ void faseAtaque(){
 				
 				
 				if(jogadores[1].pontos==10 && jogadores[0].pontos==10){//empate
-					printf("\n\nOs dois jogadores ganharam\n\n", jogadores[1].nome, jogadores[1].pontos);
-					c=16;
-					j=16;
+					printf("\n\nEmpate\n\n");
+					c=j=16;
+					
 				}else if(jogadores[0].pontos==10){//jogador 1 ganhou
 					printf("\n\n%s ganhou com %d pontos!!!!!\n\n", jogadores[0].nome, jogadores[0].pontos);
-					c=16;
-					j=16;
+					c=j=16;
+					
 				}else if(jogadores[1].pontos==10){//jogador 2 ganhou
 					printf("\n\n%s ganhou com %d pontos!!!!!\n\n", jogadores[1].nome, jogadores[1].pontos);
-					c=16;
-					j=16;
+					c=j=16;
 				}
 			}
 		}
@@ -150,42 +149,40 @@ void mostrarTabuleiro(int n){
     for(c=0; c<10; c++){
     	
     	if(c==0){
-    		
     		printf("\n\tA\tB\tC\tD\tE\tF\tG\tH\tI\tJ");
     		printf("\n     _______________________________________________________________________________");
-		}
+	}
+	
+	//indenta√ß√£o
+	if(c+1==10){
+		printf("\n %d |", c+1);
 		
-		if(c+1==10){
-			
-    		printf("\n %d |", c+1);
-    		
-		}else{
-			
+	}else{
     		printf("\n %d  |", c+1);
-    		
-		}
-    	for(i=0; i<10; i++){
+		
+	}
+	for(i=0; i<10; i++){
     		
     		printf("   %d   |", jogadores[n].tabuleiro[c][i]);
     		
-		}
 	}
+    }
 	
 	printf("\n");
 	
 }
 
 void cadastrarTabuleiro(int n){
-		
-	int linha, c=0, i=0;
+	
+    int linha, c=0, i=0;
     char coluna, letras[10]={'A','B','C','D','E','F','G','H','I','J'};
 	
-	printf("\n\n\nExemplo: 1 A\nSempre linha e coluna com espaÁo entre.\n");
+	printf("\n\n\nExemplo: 1 A\nSempre linha e coluna com espa√ßo entre.\n");
 	
 	for(c=0; c<10; c++){
 		
 		fflush(stdin);
-		printf("\nDigite a posiÁ„o do navio %d: ", c+1);
+		printf("\nDigite a posi√ß√£o do navio %d: ", c+1);
 		scanf("%d %c", &linha, &coluna);
 		fflush(stdin);
 		
@@ -198,7 +195,7 @@ void cadastrarTabuleiro(int n){
 				if(jogadores[n].tabuleiro[linha-1][i] == 1){
 					
 					printf("=============================================");
-					printf("\n||||VocÍ j· colocou um navio neste local!||||\n");
+					printf("\n||||Voc√™ j√° colocou um navio neste local!||||\n");
 					printf("=============================================");
 					c--;
 					
@@ -221,25 +218,25 @@ int main(){
     //cadastrando jogador 2
     printf("Digite seu nome: ");
     scanf("%s", &jogadores[0].nome);
-    printf("Bem vindo %s! vamos escolher onde vocÍ vai colocar seus navios de batalha!\n", jogadores[0].nome);
-    printf("\n0 = ¡gua\n1 = Navio\n");
+    printf("Bem vindo %s! vamos escolher onde voc√™ vai colocar seus navios de batalha!\n", jogadores[0].nome);
+    printf("\n0 = √Ågua\n1 = Navio\n");
     
-	mostrarTabuleiro(0);
+    mostrarTabuleiro(0);
     cadastrarTabuleiro(0);
     
     //cadastrando jogador 2
     printf("Digite seu nome: ");
     scanf("%s", &jogadores[1].nome);
-    printf("Bem vindo %s! vamos escolher onde vocÍ vai colocar seus navios de batalha!\n", jogadores[1].nome);
-    printf("\n0 = ¡gua\n1 = Navio\n");
+    printf("Bem vindo %s! vamos escolher onde voc√™ vai colocar seus navios de batalha!\n", jogadores[1].nome);
+    printf("\n0 = √Ågua\n1 = Navio\n");
     
-	mostrarTabuleiro(1);
+    mostrarTabuleiro(1);
     cadastrarTabuleiro(1);
     
     
     faseAtaque();
     
 	
-	return 0;
+    return 0;
 	
 }
